@@ -1,0 +1,42 @@
+
+
+Angular Modules
+---------------
+
+
+	1. Standalone components
+		São importáveis diretamente em qualquer outro componente
+		
+	
+	2. NgModules
+		
+		Para que?
+		Configurar o injector, compilador e organizar o código
+		
+		É uma classe: @NgModule
+		
+		Exemplos:
+		FormsModule, HttpClientModule, and RouterModule
+		
+		Agrupa componentes, diretivas e pipes
+		
+		Módulos podem ser carregados no inicio, ou através de Lazy Loading
+		
+		Até antes toda app Angular tinha ao menos 1 módulo, informado no Bootstrap (do main ts)
+		root module
+		
+	
+	3. Exemplo de um módulo básico
+	app.module.ts
+	
+	import { BrowserModule } from '@angular/platform-browser';
+	import { NgModule } from '@angular/core';
+	import { AppComponent } from './app.component';
+	
+	@NgModule({
+	  declarations: [AppComponent],
+	  imports: [BrowserModule],
+	  providers: [],
+	  bootstrap: [AppComponent]
+	})
+	export class AppModule {}

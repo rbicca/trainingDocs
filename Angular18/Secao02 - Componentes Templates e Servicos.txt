@@ -1,0 +1,262 @@
+
+Seção 02 - Componentes, Templates e Serviços
+Para 25/06/24: 63 - apresentar exercicio
+
+--------------------
+
+	- Baixar projeto start e mostrar arquivos de configuração
+	- Destacar src/app
+	- Mostrar npm i para projetos copiados
+		- Falar das versões do package.json
+		- Pasta node_modules tem o peso do universo - cuidar para não constar no git
+		- Troca de sistema operacional - windows - linux - mac
+		
+	
+	- Ciclo de inicio
+		main.ts
+			bootstrapApplication(COMP)
+		index.html
+			 <app-root></app-root> => tem que ser injetado no main.ts
+			
+			
+		Componente: AppComponent por exemplo
+				- É uma classe JS
+				- Tem decorator @Component
+				
+			
+		- Componentizar a tela. Essa é a ideia. (L012-1:21)
+		
+		- Convenção de nomes de arquivo
+			header.component.ts
+			header.component.html
+			header.component.css
+			
+		- Estrutura e organização dos arquivos
+		  <Patricia pode mostrar exemplos>
+		  
+		@Component
+			- selector  
+			- template ou templateUrl
+			- styles ou styleUrls	** [] mais de um
+			- standalone	vs ModuleComponents	abordar
+			- imports	referenciar outros componentes
+			
+			
+		** Antes de usar esse standalone component, tivemos que carrega-lo no main.ts, 
+		via bootstrapApplication. Não é o melhor caminho.
+		Temos que trabalhar com o conceito de árvore. Apeas 1 componente no Bootstrap
+		
+		Então colocar no imports
+		
+		
+		Styles
+			- Globais e locais
+			- Observar fontes importadas do google fonts
+			
+		 Imagens
+		 	- Vericar configuração em angular.json
+		 	projects/essentials/architect/build/options/assets
+		 	verificar se tem src/assets no array
+		 	
+		 	
+		-----------------------------------------------------------
+		Novos componentes
+			- Criar arquivos na mão
+			- Criar componente via cli
+				ng generate component xxxx
+				ng g c xxx		Ja cria os 4 arquivos dentro de uma pasta
+				
+		** perguntar se conhecem emmet
+		** perguntar se usam control+sapce do VSCode para corrigir imports
+		** self closing component
+		
+		** Entenderam o css?
+		
+		-----------------------------------------------------------
+		
+		Dentro do componente:
+		Entederam o import??
+		
+			* Propriedade		no inicio da classe
+			
+			* Binding
+				* String interpolation {{ }} 
+				
+				* Porperty Binding	[] ==> Para ligar no atributo
+				
+				* Input binding		()
+				
+			** Getter ==> boa ideia para simplificar o template
+				Observar o uso to this.
+				
+			Conceito de ESTADO!
+			Conceito: Change Detection - Zoneless!
+			Zone.js está caindo fora
+
+		-----------------------------------------------------------
+		
+		
+		    ** NOVA TECNICA **
+		    Max não vai usar - canalha
+		
+		Signal ==> Caixa
+		            - Com assinantes
+		            - São notificados da mudança
+		            - Angular altera a UI
+		
+		--------------------------------------------
+		
+		CRIAR
+		selectedUser = signal(xxx)
+		
+		LER
+		selectedUser().name
+		imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar)
+		
+		ATUALIZAR
+		this.selectedUser.set(xxx)
+		--------------------------------------------
+		
+		
+		
+		** Transformar componente em elemento configuravel, chamando o mesmo varias vezes
+		
+		** Propriedades
+		    @Input({required:true}) avatar!: string;
+		    @Input() name!: string;
+		
+		    [avatar] = xxxx
+		
+		
+		    ou -- com Signals -- Cuidado -- ReadOnly Signals
+		
+		    input   com i minusculo
+		    avatar = input('');
+		    name = input.required();
+		    carro = input<carro>();
+		
+		    Não muda a chamada no atributo do componente
+		    Mas cuidado - muda no template --> name()  avatar()
+		    
+		** Eventos == Notificações
+		
+		    @Output() clicar = new EventEmitter();
+		    @Output() clicar = new EventEmitter<string>();
+		
+		    Na ação desejada
+		        this.clicar.emit(xxx);
+		
+		    No chamador
+		        (clicar) = "onClick($event)"
+		
+		     ou -- estilo Signal -- mas nao é ...
+		     só server para eliminar o decorator e emparelhar a linguagem
+		
+		     output     com o minusculo
+		     clicar = output();
+		     clicar = output<string>();
+		
+     e segue usando o emit, mas adaptando o tipo do parametro
+     
+     
+     
+         ? ==> Hey typescript. Aqui pode ser undefined
+             ou
+             name: string | undefined
+             
+         ! ==> Hey, aqui eu garanto que terá valor
+     
+         ------------------------------------------------
+     
+         Ensinou a criar tipos "on the fly"
+     
+         @Input() user: {
+             id: string;
+             nome: string;
+         }
+     
+         MASSSS recomenda a criação de um tipos. Cuidado, pois existe o conceito de interface tb
+     
+          ------------------------------------------------
+     
+          @for(u of users; track user.id)    *ngFor  -- que cousa horrível
+          @if                                *ngIf
+          @else
+          
+         Observações do exercicio
+             - criou getter para filtrar tarefas
+             - usou @for
+             - usou evento para avisar ao pai que o botao apagar foi clicado
+     
+         Binding css
+         Usou 
+         [class.<classe css>] = "flag true"
+     
+         Cap 50 e 51 --> Modal bem bacaninha!
+     
+         ------------------------------------------------
+     
+         2way Binding  [()}]
+         Diretivas --> Melhoram os componentes - sem template
+             ngModel - Tem que importar de FormsModul
+     
+         ** Primeira maneira. Futuramente iremos abordar Forms (declarativos e reativos)
+         
+         Atualziar docs == 2way bindings X signals
+         enteredTitle = signal(''); 
+         Não precisa atualizar o template no angular. Automaticamente será detectado que é signal.
+     
+         Perguntar do porque do Prevent Default!!!!!
+         Quando importados FormsModule, ele já trata isso para nos.
+     
+    Conheciam o méotodo unshift do array (ao inves do push);
+    
+     
+     	------------------------------------------------
+     	
+     	<ng-content />		=> Equivalente ao children do react
+     	** Faz content projection
+     	
+     	Pipes
+     	==> Transformador de saída
+     	    Valores, datas, maisc/min
+     	    {{ data | date }}
+     	    ** posso fazer os meus próprios tipos de pipe. Ex cnpj/cpf mascarado
+     	    
+     	Services
+     	Tudo começa em um arquivo: por exemplo: tasks.service.ts
+     	Prover funcionalidades.
+     	
+     	Para usar o serviço na classe, ele deve ser injetado.
+     	Conceito de injeção de dependencia (DI) . Entendem por que?
+     	Deixamos para o angular criar o componente para nós.
+     	Não fizemos o new();
+     	Ele cria uma vez e usa em todos os lugares
+     	
+     	taskService;
+     	
+     		ou pelo contrutor
+     		constructor(tasksService: TasksService){
+     			this.taskService = taskService.
+     		}
+     		ou
+     		
+     		constructor(private tasksService: TasksService){}		//c# usa muito isso
+     		
+     		ou
+     		
+     		private taskService = inject(TaskService);
+     		
+     	Busca as tarefas no LocalStorage
+     	Sabem olhar no console?
+     	
+     		const tasks = 	localStorage.getItem('tasks');
+     		if (tasks){
+     		  this.tasks = JSON.parse(tasks);
+     		}
+     		
+     	Salva as tarefas no LocaStorage
+     		localStorage.setItem('tasks', JSON.stringfy(this.taks));
+     		
+     	
+	     	

@@ -1,0 +1,60 @@
+
+Seção 01 - Iniciando
+--------------------
+
+	- O que é Angular?
+	Framework JS para front-end.
+	
+	- Por que usamos?
+	Para acelerar desenvolvimento html + css+ javascript puro (Vanila JS)
+	Facilitam o desenvolvimento de aplicações complexas.
+	Possibilita execução de código DECLARATIVO - Javascript somente imperativo.
+	Por exemplo: @if, (click), etc...
+	
+	
+	- Composto por que ferramentas?
+	CLI, ferramentas de debug, plugins de ide, etc...
+	
+	- Base: Componentes => Combinação de 
+		HTML
+		CSS
+		Typscript - não Javascript - facilitar tipagem
+		
+	- Por que? Aplicações modulares - menos complexas - facilitam proceso em equipe
+	
+	- Por que resolvemos usar (ao invés de React)?
+		- Framework completo (route, login, estado)
+		- Te obriga a trabalhar do jeito correto. React não tem o jeito correto.
+		- Evolui com estabilidade e compatibilidade anterior.
+		
+	
+--------------------
+
+	- Criando um novo projeto (alguns chamam worskspace)
+		- Usamos Angular CLI - ng
+		  Temos que instalar. 
+		  NodeJS é pré-requisito
+		  Instalador de pacotes npm
+		  
+		  ** Diferença de instalar global ou de usar npx
+		  
+		  npm install -g @angular/cli
+		  
+		  ng new my-app  
+		  ng serve --open
+		  	
+		  	ou com npx
+		  	
+		  npx @angular/cli new my-app
+		  npx ng generate component my-component
+		  npx ng serve (ou npm start) ==> mostrar arquivo 
+		  npx ng generate component cao
+		  
+		http://localhost:4200/
+		Falar que o processo tem que estar rodando, em mostrar o watch
+		
+--------------------
+
+	- Configurar code
+	- Configurar extenções do code para angular
+	- Entender a estrutura de pastas do projeto. 
