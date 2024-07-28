@@ -1,0 +1,21 @@
+
+* Devem iniciar no main.ts com 
+    platformBrowserDynamic().bootstrapModule(AppModule);
+
+* @NgModule({
+  declarations: [AppComponent, ],
+  bootstrap: [AppComponent],
+  imports: [HeaderComponent, UserComponent, TaskComponent]
+})
+export class AppModule{
+
+}
+
+* Posso usar a seção imports para usar standalone components
+
+* Somente o modulo root tem a seção bootstrap
+
+* Ao criar um módulo para agrupar componentes e ser chamado de outro módulo, 
+  devemos usar a opção:
+    exports[]
+
