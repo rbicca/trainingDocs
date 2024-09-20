@@ -1,0 +1,24 @@
+
+Dicas para debug
+
+    1 .Olhar o resultado da compilação no terminal
+       Identificar o arquivo / linha
+
+    2. Hints do linter no editor
+
+    3. No Browser, usar guia Sources
+        Através de Sourcemaps dá para chegar no código
+        Dá para colocar breakpoint
+        A partir dai inspecionar variaveis e step by step
+
+    4. Angular DevTools
+        Rica extensão para o chrome
+            Varias tabs legais
+                components tree
+                    Permite alterar propriedades dos componentes
+                Profiler
+                    Analisa performance
+                Injector tree   
+                    visualiza DI
+                
+

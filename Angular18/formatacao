@@ -1,0 +1,26 @@
+Formatação e internacionalização
+--------------------------------
+
+Adicionei o pacote de localizaçao
+    ng add @angular/localize
+
+Troquei o local padrão para pt-BR
+    arquivo angular.json
+    dentro de /projetcs/<meu projeto/> criei a seguinte seção
+
+      "i18n": {
+        "sourceLocale": "pt-BR"
+      },
+
+      Isso trocou ao menos os separadores decimais e de milhar para virugla e phone_bluetooth_speaker
+
+Ao usar um currency pipe 
+    - imports: [CurrencyPipe],
+    - providers: [ { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'}],
+
+    E no template
+     <td>{{r.valueEndOfYear | currency}}</td>
+
+
+** Saiu em reais bem formatadinho
+
